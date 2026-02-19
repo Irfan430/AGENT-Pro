@@ -92,3 +92,6 @@
 - [x] Verify all files are uploaded
 - [x] Update README with OS-specific installation commands
 - [x] Add single-command setup for all platforms
+- [x] Fix Python dependencies conflicts
+- [x] Fix npm Vite version conflicts
+- [x] Create Kali Linux specific installation guide
