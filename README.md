@@ -2,22 +2,23 @@
 
 **A powerful, stable, and autonomous AI agent system with complete device control through natural language commands.**
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
 ![Node.js](https://img.shields.io/badge/node.js-22+-green.svg)
+![DeepSeek](https://img.shields.io/badge/LLM-DeepSeek-purple.svg)
 
 ## Overview
 
-Autonomous Agent Pro is a comprehensive AI agent system that gives you complete control over your device through natural language commands. Built with DeepSeek as the default LLM, it supports multi-language code execution, self-healing capabilities, and a modern Manus AI-like GUI.
+Autonomous Agent Pro is a comprehensive AI agent system that gives you complete control over your device through natural language commands. Built with DeepSeek as the default LLM, it supports multi-language code execution, self-healing capabilities, intelligent auto-continuation with token limit detection, and a modern Manus AI-like GUI.
 
 ### Key Capabilities
 
-The agent can execute tasks across multiple domains by understanding your natural language instructions and breaking them down into executable steps. It supports Python, JavaScript, Shell, Java, R, and Ruby code execution with full sandboxing and safety mechanisms. The system includes automatic error detection and self-healing logic that can fix code issues without user intervention.
+The agent can execute tasks across multiple domains by understanding your natural language instructions and breaking them down into executable steps. It supports Python, JavaScript, Shell, Java, R, and Ruby code execution with full sandboxing and safety mechanisms. The system includes automatic error detection, self-healing logic, intelligent task state management, and automatic resumption from checkpoints when token limits are reached.
 
 ### Architecture
 
-The system is built on a modern stack with a FastAPI backend for robust API handling and a React frontend for an intuitive user interface. Communication between frontend and backend uses WebSocket for real-time streaming responses. The architecture supports horizontal scaling through containerization and includes comprehensive logging and monitoring capabilities.
+The system is built on a modern stack with a FastAPI backend for robust API handling and a React frontend for an intuitive user interface. Communication between frontend and backend uses WebSocket for real-time streaming responses. The architecture supports horizontal scaling through containerization and includes comprehensive logging, monitoring, and memory management capabilities.
 
 ## Features
 
@@ -37,6 +38,12 @@ The system is built on a modern stack with a FastAPI backend for robust API hand
 
 ### Advanced Features
 
+**Intelligent Auto-Continuation** - Detects token limits and automatically resumes tasks from saved checkpoints with context compression.
+
+**Task State Management** - Persistent tracking of task progress, steps, and execution history with recovery capabilities.
+
+**Memory Management** - Sliding window memory, context compression, and importance scoring for efficient token usage.
+
 **Voice Input** - Hands-free interaction using Whisper API for speech-to-text transcription.
 
 **Computer Vision** - Screen capture and image analysis capabilities for visual task automation.
@@ -49,125 +56,144 @@ The system is built on a modern stack with a FastAPI backend for robust API hand
 
 **User Approval Mode** - Safe mode requiring explicit user confirmation before executing potentially dangerous operations.
 
-## Quick Start
+## Quick Start - Single Command Installation
 
-### Prerequisites
+Choose your operating system and run the appropriate command:
 
-- Python 3.11 or higher
-- Node.js 22 or higher
-- Docker and Docker Compose (optional, for containerized deployment)
-- DeepSeek API key (or alternative LLM provider)
-
-### Installation
-
-#### Option 1: Local Development
-
-Clone the repository and install dependencies:
+### 🐧 Ubuntu / Debian Linux
 
 ```bash
-git clone https://github.com/Irfan430/autonomous-agent-pro.git
-cd autonomous-agent-pro
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Install Node.js dependencies
-cd client
-pnpm install
-cd ..
+git clone https://github.com/Irfan430/AGENT-Pro.git && cd AGENT-Pro && cp .env.example .env && python3 -m pip install -r requirements.txt && cd client && npm install && cd .. && echo "✓ Installation complete! Run: python3 -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000"
 ```
 
-#### Option 2: Docker Deployment
-
-Build and run using Docker Compose:
+### 🔴 Kali Linux
 
 ```bash
-docker-compose up -d
+git clone https://github.com/Irfan430/AGENT-Pro.git && cd AGENT-Pro && cp .env.example .env && sudo apt-get update && sudo apt-get install -y python3-pip nodejs npm && python3 -m pip install --upgrade pip && python3 -m pip install -r requirements.txt && cd client && npm install && cd .. && echo "✓ Installation complete! Run: python3 -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000"
 ```
 
-This will start the backend API, frontend, MySQL database, and Redis cache.
-
-### Configuration
-
-Copy the environment template and configure your settings:
+### 🍎 macOS
 
 ```bash
-cp .env.example .env
+git clone https://github.com/Irfan430/AGENT-Pro.git && cd AGENT-Pro && cp .env.example .env && brew install python@3.11 node && python3.11 -m pip install -r requirements.txt && cd client && npm install && cd .. && echo "✓ Installation complete! Run: python3.11 -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000"
 ```
 
-Edit `.env` to add your API keys and configuration:
+### 🪟 Windows (PowerShell)
 
-```env
-DEEPSEEK_API_KEY=your_api_key_here
-DEFAULT_LLM_PROVIDER=deepseek
-EXECUTION_MODE=safe
+```powershell
+git clone https://github.com/Irfan430/AGENT-Pro.git; cd AGENT-Pro; Copy-Item .env.example .env; python -m pip install --upgrade pip; python -m pip install -r requirements.txt; cd client; npm install; cd ..; Write-Host "✓ Installation complete! Run: python -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000"
 ```
 
-### Running the Application
-
-#### Local Development
-
-Start the backend server:
+### 🐳 Docker (All Platforms)
 
 ```bash
+git clone https://github.com/Irfan430/AGENT-Pro.git && cd AGENT-Pro && cp .env.example .env && docker-compose up -d && echo "✓ Agent running at http://localhost:3000"
+```
+
+## Quick Start - Running the Application
+
+### 🐧 Ubuntu / Debian Linux
+
+```bash
+# Terminal 1: Start Backend
+python3 -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+
+# Terminal 2: Start Frontend
+cd client && npm run dev
+```
+
+Access at: `http://localhost:5173`
+
+### 🔴 Kali Linux
+
+```bash
+# Terminal 1: Start Backend
+python3 -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+
+# Terminal 2: Start Frontend
+cd client && npm run dev
+```
+
+Access at: `http://localhost:5173`
+
+### 🍎 macOS
+
+```bash
+# Terminal 1: Start Backend
+python3.11 -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+
+# Terminal 2: Start Frontend
+cd client && npm run dev
+```
+
+Access at: `http://localhost:5173`
+
+### 🪟 Windows (PowerShell)
+
+```powershell
+# Terminal 1: Start Backend
 python -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+
+# Terminal 2: Start Frontend
+cd client; npm run dev
 ```
 
-In another terminal, start the frontend:
+Access at: `http://localhost:5173`
 
-```bash
-cd client
-pnpm dev
-```
-
-Access the application at `http://localhost:5173`
-
-#### Docker
+### 🐳 Docker (All Platforms)
 
 ```bash
 docker-compose up
 ```
 
-Access at `http://localhost:3000`
+Access at: `http://localhost:3000`
 
-## Usage
+## Configuration
+
+### Set Your DeepSeek API Key
+
+Edit the `.env` file and add your API key:
+
+```env
+DEEPSEEK_API_KEY=sk-your-api-key-here
+DEFAULT_LLM_PROVIDER=deepseek
+EXECUTION_MODE=safe
+```
+
+Get your API key from: https://platform.deepseek.com
+
+## Usage Examples
 
 ### Basic Chat Interaction
 
-The simplest way to use the agent is through the chat interface:
-
 ```
-User: "Create a Python script that analyzes a CSV file and generates a bar chart"
+User: "Create a Python script that calculates the sum of numbers 1 to 100"
 
-Agent: [Generates code, executes it, returns results]
+Agent: [Generates code] → [Validates] → [Executes] → [Returns result: 5050]
 ```
 
-### Code Execution
-
-The agent automatically detects code blocks in responses and can execute them:
+### Data Analysis
 
 ```
-User: "Write Python code to fetch data from an API and process it"
+User: "Generate 100 random numbers, calculate mean, median, and standard deviation"
 
-Agent: [Generates code] → [Validates code] → [Executes code] → [Returns output]
+Agent: [Generates code] → [Executes] → [Displays statistics]
 ```
 
-### Task Planning
-
-For complex tasks, the agent creates a multi-step plan:
+### Multi-Step Task
 
 ```
-User: "Analyze sales data, create visualizations, and generate a report"
+User: "Create a CSV file with sample data, analyze it, and generate a bar chart"
 
-Agent: [Creates task plan] → [Executes steps] → [Aggregates results]
+Agent: [Creates task plan] → [Executes step 1] → [Executes step 2] → [Executes step 3] → [Returns results]
 ```
 
-### Voice Input
+### Voice Commands
 
-Use the microphone button in the chat interface to give voice commands:
+Click the microphone button in the chat interface and speak your command:
 
 ```
-User: [Speaks] "Show me the weather forecast"
+User: [Speaks] "Show me the weather forecast for tomorrow"
 
 Agent: [Transcribes] → [Processes] → [Returns response]
 ```
@@ -243,35 +269,38 @@ ws.onmessage = (event) => {
 
 ### System Components
 
-The system consists of several interconnected components working together to provide autonomous task execution:
+**Frontend (React)** - Modern web interface with real-time chat, code preview, and execution history. Built with React 19, Tailwind CSS, and shadcn/ui components.
 
-**Frontend (React)** - Modern web interface with real-time chat, code preview, and execution history. Built with React 19, Tailwind CSS, and shadcn/ui components for a polished user experience.
+**Backend (FastAPI)** - High-performance async API server handling chat, code execution, and task management.
 
-**Backend (FastAPI)** - High-performance async API server handling chat, code execution, and task management. Provides both REST and WebSocket endpoints for flexible client integration.
+**LLM Manager** - Unified interface for multiple LLM providers with streaming support and function calling.
 
-**LLM Manager** - Unified interface for multiple LLM providers with streaming support, function calling, and error analysis capabilities.
+**Code Executor** - Sandboxed code execution engine supporting multiple languages with timeout protection.
 
-**Code Executor** - Sandboxed code execution engine supporting multiple languages with timeout protection and resource limits.
+**Agent Core** - Main orchestration logic handling task planning, execution, and conversation management.
 
-**Agent Core** - Main orchestration logic handling task planning, execution, self-healing, and conversation management.
+**Continuation Manager** - Intelligent token limit detection and automatic task resumption with checkpoints.
+
+**Task State Engine** - Persistent task tracking with step management and recovery capabilities.
+
+**Memory Manager** - Context compression and memory optimization for efficient token usage.
 
 **Safety Validator** - Code validation and security checking to prevent dangerous operations.
 
 **Vision/Voice Manager** - Screen capture, image analysis, and audio transcription capabilities.
 
-**Diagram Generator** - Automatic visualization of task plans and execution flows using Mermaid diagrams.
+**Diagram Generator** - Automatic visualization of task plans using Mermaid diagrams.
 
 ### Data Flow
 
-When a user sends a message, the system follows this flow:
-
 1. Message is received via REST or WebSocket endpoint
 2. LLM processes the message and generates a response
-3. Code blocks are extracted and validated
-4. If auto-execute is enabled, code is executed in sandbox
-5. Results are streamed back to client in real-time
-6. Execution history is stored for future reference
-7. Session state is maintained for conversation continuity
+3. Token limit is checked; if exceeded, system resumes from checkpoint
+4. Code blocks are extracted and validated
+5. If auto-execute is enabled, code is executed in sandbox
+6. Results are streamed back to client in real-time
+7. Task state is updated and saved
+8. Execution history is stored for future reference
 
 ## Configuration Guide
 
@@ -305,12 +334,14 @@ SANDBOX_ENABLED=True
 RESTRICTED_MODULES=os,sys,subprocess,socket
 ```
 
-### Database Configuration
+### Continuation Settings
 
-For production deployments, configure MySQL:
+Configure auto-continuation behavior:
 
 ```env
-DATABASE_URL=mysql+pymysql://user:password@host:3306/database
+MAX_CONTINUATION_ATTEMPTS=5
+CONTEXT_COMPRESSION_RATIO=0.3
+MEMORY_MAX_TOKENS=4000
 ```
 
 ## Safety and Security
@@ -338,197 +369,138 @@ Code execution is isolated through:
 When code fails, the system:
 
 1. Analyzes the error using the LLM
-2. Suggests corrections automatically
-3. Retries with corrected code
-4. Tracks retry attempts and success rates
+2. Generates corrected code
+3. Validates the fix
+4. Re-executes automatically
+5. Returns results or escalates if unrecoverable
 
-## Docker Deployment
+### Auto-Continuation
 
-### Building the Image
+When token limits are reached:
 
-```bash
-docker build -t autonomous-agent-pro:latest .
-```
-
-### Running with Docker Compose
-
-```bash
-docker-compose up -d
-```
-
-This starts:
-- Backend API (port 8000)
-- Frontend (port 3000)
-- MySQL database
-- Redis cache
-
-### Environment Variables
-
-Configure via `.env` file or Docker environment:
-
-```bash
-docker-compose up -d \
-  -e DEEPSEEK_API_KEY=your_key \
-  -e EXECUTION_MODE=safe
-```
-
-## Development
-
-### Project Structure
-
-```
-autonomous-agent-pro/
-├── backend/                 # Python backend
-│   ├── agent/              # Agent core logic
-│   ├── executor/           # Code execution
-│   ├── llm/                # LLM integration
-│   ├── safety/             # Code validation
-│   ├── utils/              # Utilities
-│   ├── config.py           # Configuration
-│   └── main.py             # FastAPI app
-├── client/                  # React frontend
-│   ├── src/
-│   │   ├── pages/          # Page components
-│   │   ├── components/     # UI components
-│   │   └── App.tsx         # Main app
-│   └── package.json
-├── Dockerfile              # Container image
-├── docker-compose.yml      # Multi-service setup
-├── requirements.txt        # Python dependencies
-└── README.md              # This file
-```
-
-### Adding New Features
-
-To add a new feature:
-
-1. Create the backend logic in `backend/`
-2. Add API endpoints in `backend/main.py`
-3. Create React components in `client/src/`
-4. Wire components to API via tRPC hooks
-5. Add tests for the new functionality
-6. Update documentation
-
-### Testing
-
-Run tests with pytest:
-
-```bash
-pytest backend/ -v
-```
+1. System detects truncation (finish_reason == "length")
+2. Current state is saved as checkpoint
+3. Context is compressed to fit within limits
+4. Task resumes from checkpoint with compressed context
+5. Process repeats until task is complete
 
 ## Troubleshooting
 
-### Connection Issues
+### Port Already in Use
 
-If the frontend cannot connect to the backend:
+If port 8000 or 5173 is already in use:
 
-1. Verify backend is running: `curl http://localhost:8000/health`
-2. Check CORS settings in `.env`
-3. Verify WebSocket URL in frontend configuration
+```bash
+# Change backend port
+python -m uvicorn backend.main:app --port 8001
 
-### Code Execution Failures
+# Change frontend port
+cd client && npm run dev -- --port 5174
+```
 
-If code execution fails:
+### API Key Issues
 
-1. Check execution logs in `logs/agent.log`
-2. Verify language is supported
-3. Check for restricted module imports
-4. Review error message for details
+Ensure your `.env` file has the correct API key:
 
-### Database Connection
+```bash
+# Check if .env file exists
+cat .env | grep DEEPSEEK_API_KEY
+```
 
-If database connection fails:
+### Memory Issues
 
-1. Verify MySQL is running
-2. Check DATABASE_URL in `.env`
-3. Verify credentials are correct
-4. Check network connectivity
+If experiencing memory issues, adjust settings:
+
+```env
+MEMORY_MAX_TOKENS=2000  # Reduce from 4000
+CONTEXT_COMPRESSION_RATIO=0.2  # Increase compression
+```
+
+### WebSocket Connection Issues
+
+Check that your firewall allows WebSocket connections on port 8000.
 
 ## Performance Optimization
 
-### Caching
+### For Production
 
-Redis is used for caching:
+Use Gunicorn instead of uvicorn:
 
-```env
-REDIS_URL=redis://localhost:6379/0
-CACHE_TTL=3600  # 1 hour
+```bash
+pip install gunicorn
+gunicorn backend.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
 ```
 
 ### Database Optimization
 
-For production:
+Enable query caching:
 
-1. Create indexes on frequently queried columns
-2. Enable query caching
-3. Use connection pooling
-4. Monitor slow queries
+```env
+REDIS_ENABLED=True
+REDIS_URL=redis://localhost:6379
+```
 
-### API Rate Limiting
+### Memory Optimization
 
-Implement rate limiting for production:
+Adjust memory settings for your system:
 
-```python
-from fastapi_limiter import FastAPILimiter
-from fastapi_limiter.util import get_remote_address
-
-FastAPILimiter.init(redis_client)
+```env
+MEMORY_MAX_TOKENS=2000
+SLIDING_WINDOW_SIZE=3
+CHECKPOINT_CLEANUP_INTERVAL=3600
 ```
 
 ## Contributing
 
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Author
-
-**IRFAN** - Original author and maintainer
-
-## Acknowledgments
-
-This project is inspired by Open Interpreter and builds upon its concepts with significant enhancements for stability, safety, and autonomous execution capabilities.
+This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Support
 
 For issues, questions, or suggestions:
 
-1. Check the troubleshooting section above
-2. Review existing GitHub issues
-3. Create a new issue with detailed information
-4. Contact the maintainer
+1. Check the [Troubleshooting](#troubleshooting) section
+2. Open an issue on GitHub
+3. Check existing issues for similar problems
+
+## Author
+
+**IRFAN** - Principal AI Systems Architect
+
+## Acknowledgments
+
+- DeepSeek for the powerful LLM API
+- Open Interpreter for inspiration on code execution
+- Manus AI for UI/UX design inspiration
+- The open-source community for various libraries and tools
 
 ## Roadmap
 
-### Upcoming Features
+- [ ] Multi-agent collaboration system
+- [ ] Advanced workflow automation
+- [ ] Custom skill development framework
+- [ ] Real-time collaboration features
+- [ ] Advanced analytics and insights
+- [ ] Mobile app support
+- [ ] Cloud deployment templates
 
-- **Multi-agent collaboration** - Multiple agents working together on complex tasks
-- **Advanced scheduling** - Scheduled task execution and cron jobs
-- **Custom tools** - User-defined tools and integrations
-- **Advanced analytics** - Detailed execution analytics and performance metrics
-- **Mobile app** - Native mobile application for iOS and Android
-- **Cloud deployment** - One-click deployment to cloud platforms
+## Changelog
 
-## References
+### v2.0.0 (Current)
+- Added DeepSeek API integration
+- Implemented intelligent auto-continuation system
+- Added task state engine with checkpoint recovery
+- Implemented memory management and context compression
+- Enhanced error handling and self-healing logic
+- Added comprehensive test suite
 
-This project integrates with several external services and libraries:
-
-- DeepSeek API for language model capabilities
-- OpenAI API for alternative LLM support
-- Anthropic Claude for advanced reasoning
-- Whisper API for speech-to-text
-- FastAPI for backend framework
-- React for frontend framework
-
----
-
-**Autonomous Agent Pro** - Empowering users with autonomous AI capabilities for complete device control.
+### v1.0.0
+- Initial release
+- Multi-language code execution
+- Manus AI-like GUI
+- Docker support
+- Voice input integration
+- Computer vision capabilities

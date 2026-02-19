@@ -87,6 +87,8 @@
 - [x] Test continuation detection
 
 ### GitHub Integration
-- [ ] Commit all changes to GitHub
-- [ ] Push to AGENT-Pro repository
-- [ ] Verify all files are uploaded
+- [x] Commit all changes to GitHub
+- [x] Push to AGENT-Pro repository
+- [x] Verify all files are uploaded
+- [x] Update README with OS-specific installation commands
+- [x] Add single-command setup for all platforms
