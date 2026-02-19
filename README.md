@@ -56,7 +56,34 @@ The system is built on a modern stack with a FastAPI backend for robust API hand
 
 **User Approval Mode** - Safe mode requiring explicit user confirmation before executing potentially dangerous operations.
 
-## Quick Start - Single Command Installation
+## Quick Start - Automated Installation
+
+### Option 1: Use Installation Scripts (Recommended)
+
+We provide automated installation scripts that handle all dependencies:
+
+**Kali Linux / Debian:**
+```bash
+git clone https://github.com/Irfan430/AGENT-Pro.git
+cd AGENT-Pro
+bash install.sh
+```
+
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/Irfan430/AGENT-Pro.git
+cd AGENT-Pro
+.\install.bat
+```
+
+**macOS:**
+```bash
+git clone https://github.com/Irfan430/AGENT-Pro.git
+cd AGENT-Pro
+bash install.sh.macos
+```
+
+### Option 2: Single Command Installation
 
 Choose your operating system and run the appropriate command:
 

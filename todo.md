@@ -95,3 +95,7 @@
 - [x] Fix Python dependencies conflicts
 - [x] Fix npm Vite version conflicts
 - [x] Create Kali Linux specific installation guide
+- [x] Create automated installation scripts for all platforms
+- [x] Fix packaging version conflicts
+- [x] Create Windows batch installer
+- [x] Create macOS installation script

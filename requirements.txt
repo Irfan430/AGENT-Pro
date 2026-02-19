@@ -68,5 +68,10 @@ matplotlib==3.8.2
 # HTTP Client
 httpx==0.25.2
 
+# Build & Package Management
+packaging>=24.0
+wheel>=0.43.0
+setuptools>=68.0.0
+
 # Additional utilities
 typing-extensions==4.8.0
